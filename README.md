@@ -1,0 +1,2 @@
+# sqlscripts
+Usefull scripts
