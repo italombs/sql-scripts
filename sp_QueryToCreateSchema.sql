@@ -36,7 +36,7 @@ GO
 
 /*HOW TO USE*/
 
---1. To generete temporary table
+--1. To generate temporary table
 EXEC sp_QueryToCreateSchema
 		@objectDefinition = 'CREATE TABLE #systemTables',
 		@queryExpression =
@@ -48,7 +48,7 @@ EXEC sp_QueryToCreateSchema
 GO
 
 
---2. To generete table variable
+--2. To generate table variable
 EXEC sp_QueryToCreateSchema
 		@objectDefinition = 'DECLARE @systemTables TABLE',
 		@queryExpression =
@@ -60,7 +60,7 @@ EXEC sp_QueryToCreateSchema
 GO
 
 
---3. To generete physical table
+--3. To generate physical table
 EXEC sp_QueryToCreateSchema
 		@objectDefinition = 'CREATE TABLE systemTables',
 		@queryExpression =
