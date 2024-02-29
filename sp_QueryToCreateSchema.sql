@@ -16,19 +16,18 @@ AS
 		 + CONVERT(VARCHAR(5),f.column_ordinal),f.name))
 	     + ' '+ System_type_name 
 		 + CASE WHEN is_nullable = 0 THEN ' NOT' ELSE ''END+' NULL'
-	   --+ CASE WHEN collation_name IS NULL THEN '' ELSE ' COLLATE '+collation_name END
-	   AS ThePath
+	   AS command_result
 	  FROM sys.dm_exec_describe_first_result_set(@queryExpression, NULL, 1) AS f
 	  LEFT JOIN(
 			SELECT name AS name 
 			FROM sys.dm_exec_describe_first_result_set(@queryExpression, NULL, 0) 
-			WHERE is_hidden=0 
+			WHERE is_hidden = 0 
 			GROUP 
 			BY name 
-			HAVING Count(*)>1
+			HAVING Count(1) > 1
 	  ) AS DuplicateNames
 			ON DuplicateNames.name = f.name
-	  WHERE f.is_hidden=0
+	  WHERE f.is_hidden = 0
 	  ORDER BY column_ordinal
 	  FOR XML PATH (''), TYPE).value('.', 'varchar(max)'),1,1,'')+')'
 GO
